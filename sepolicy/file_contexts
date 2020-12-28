@@ -24,6 +24,9 @@
 # CMActions
 /sys/homebutton(/.*)?                                    u:object_r:sysfs_homebutton:s0
 
+# DTV
+/dev/isdbt                                               u:object_r:isdbt_device:s0
+
 # Fingerprint
 /data/\.fps(/.*)?                                         u:object_r:fps_data_file:s0
 /data/fpc(/.*)?                                          u:object_r:fpc_data_file:s0
