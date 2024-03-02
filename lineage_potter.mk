@@ -1,36 +1,30 @@
 #
-# Copyright (C) 2016 The CyanogenMod Project
-# Copyright (C) 2017 The LineageOS Project
+# Copyright (C) 2019 The LineageOS Project
 #
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
+# SPDX-License-Identifier: Apache-2.0
 #
-#      http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
 
-# Inherit from those products. Most specific first.
-$(call inherit-product, device/motorola/potter/full_potter.mk)
+# Inherit from potter device
+$(call inherit-product, device/motorola/potter/device.mk)
 
-# Inherit some common DU stuff.
+# Inherit some common stuff.
 $(call inherit-product, vendor/lineage/config/common_full_phone.mk)
-
-# Boot animation
-TARGET_SCREEN_WIDTH := 1080
-TARGET_SCREEN_HEIGHT := 1920
-
-
-PRODUCT_SYSTEM_PROPERTY_BLACKLIST := ro.product.model
+TARGET_GAPPS_ARCH := arm64
+TARGET_BOOT_ANIMATION_RES := 1080
+TARGET_INCLUDE_LIVE_WALLPAPERS := false
 
 ## Device identifier. This must come after all inclusions
-PRODUCT_DEVICE := potter
-PRODUCT_NAME := lineage_potter
 PRODUCT_BRAND := motorola
-PRODUCT_MANUFACTURER := Motorola
-PRODUCT_RELEASE_NAME := potter
+PRODUCT_MANUFACTURER := motorola
+PRODUCT_NAME := lineage_potter
+PRODUCT_DEVICE := potter
+PRODUCT_MODEL := Moto G (5) Plus
 
+# Build Fingerprint
+PRODUCT_BUILD_PROP_OVERRIDES += \
+    PRIVATE_BUILD_DESC="potter-user 8.1.0 OPSS28.85-17-4 28698 release-keys"\
+    PRODUCT_NAME="potter"
+    
+BUILD_FINGERPRINT := motorola/potter/potter:8.1.0/OPSS28.85-17-4/28698:user/release-keys
+
+PRODUCT_GMS_CLIENTID_BASE := android-motorola
