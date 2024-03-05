@@ -15,9 +15,6 @@
 # Vendor blobs
 $(call inherit-product-if-exists, vendor/motorola/potter/potter-vendor.mk)
 
-# Device Path
-DEVICE_PATH := device/motorola/potter
-
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += \
     $(LOCAL_PATH)/overlay \
@@ -29,19 +26,13 @@ PRODUCT_AAPT_CONFIG := normal
 
 # Audio
 PRODUCT_PACKAGES += \
-    libqcompostprocbundle
+    libqcompostprocbundle \
+    libshim_adsp
 
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/audio/audio_effects.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_effects.xml \
-    $(LOCAL_PATH)/configs/audio/audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy_configuration.xml \
     $(LOCAL_PATH)/configs/audio/audio_platform_info.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_platform_info.xml \
-    $(LOCAL_PATH)/configs/audio/audio_ext_spkr.conf:$(TARGET_COPY_OUT_VENDOR)/etc/audio_ext_spkr.conf \
     $(LOCAL_PATH)/configs/audio/mixer_paths.xml:$(TARGET_COPY_OUT_VENDOR)/etc/mixer_paths.xml \
-    $(LOCAL_PATH)/configs/audio/sound_trigger_mixer_paths.xml:$(TARGET_COPY_OUT_VENDOR)/etc/sound_trigger_mixer_paths.xml \
-    $(LOCAL_PATH)/configs/audio/audio_output_policy.conf:$(TARGET_COPY_OUT_VENDOR)/etc/audio_output_policy.conf \
-    $(LOCAL_PATH)/configs/audio/audio_platform_info_extcodec.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_platform_info_extcodec.xml \
-    $(LOCAL_PATH)/configs/audio/sound_trigger_platform_info.xml:$(TARGET_COPY_OUT_VENDOR)/etc/sound_trigger_platform_info.xml
-
+    
 # Boot animation
 TARGET_SCREEN_HEIGHT := 1920
 TARGET_SCREEN_WIDTH := 1080
@@ -54,7 +45,8 @@ PRODUCT_PACKAGES += \
     libbson.vendor \
     libjustshoot_shim \
     libgui_vendor \
-    libhidltransport
+    libgpu_mapper_shim \
+    libjustshoot_shim
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/camera/msm8953_mot_potter_camera.xml:system/etc/camera/msm8953_mot_potter_camera.xml \
@@ -112,7 +104,7 @@ PRODUCT_COPY_FILES += \
 # Init
 PRODUCT_PACKAGES += \
 	fstab.qcom \
-	init.sanders.rc \
+	init.potter.rc \
 	init.qcom.ril.sh
 	
 # Properties
@@ -120,17 +112,17 @@ PRODUCT_PACKAGES += \
 
 # Sensors
 PRODUCT_PACKAGES += \
-    motosh \
     libsensorhub \
+    motosh \
     sensorhub.msm8953 \
     sensors.msm8953 \
     sensors.rp \
     sensors.tof \
     sensors.tof.vl53l0
-    
+
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/sensors/sensor_def_qcomdev.conf:$(TARGET_COPY_OUT_VENDOR)/etc/sensors/sensor_def_qcomdev.conf \
-    $(LOCAL_PATH)/configs/sensors/hals.conf:$(TARGET_COPY_OUT_VENDOR)/etc/sensors/hals.conf
+    $(LOCAL_PATH)/configs/sensors/hals.conf:$(TARGET_COPY_OUT_VENDOR)/etc/sensors/hals.conf \
+    $(LOCAL_PATH)/configs/sensors/sensor_def_qcomdev.conf:$(TARGET_COPY_OUT_VENDOR)/etc/sensors/sensor_def_qcomdev.conf
 
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
