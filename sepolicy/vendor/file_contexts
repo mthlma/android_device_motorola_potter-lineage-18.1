@@ -5,3 +5,5 @@
 /dev/stml0xx                                             u:object_r:sensors_device:s0
 /dev/stml0xx_as                                          u:object_r:sensors_device:s0
 /dev/stml0xx_ms                                          u:object_r:sensors_device:s0
+/dev/akm09912                                            u:object_r:compass_device:s0
+/dev/akm09912_dev                                        u:object_r:compass_device:s0
