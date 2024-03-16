@@ -40,3 +40,6 @@ on property:ro.boot.ram=3GB
 
 on property:ro.boot.ram=4GB
     write /sys/block/zram0/disksize 536870912
+    
+on init && property:ro.boot.hardware.sku=XT1683
+    setprop ro.hw.dtv true
