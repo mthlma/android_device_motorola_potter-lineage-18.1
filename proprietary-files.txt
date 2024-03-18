@@ -54,7 +54,7 @@ etc/firmware/rampatch_tlv_1.3.tlv
 etc/firmware/rampatch_tlv_2.1.tlv
 etc/firmware/rampatch_tlv_3.0.tlv
 etc/firmware/rampatch_tlv_3.2.tlv
-etc/firmware/sensorhubfw.bin
+vendor/firmware/sensorhubfw.bin
 etc/firmware/synaptics-boe-potter-16112102-25d862-potter.tdat
 etc/firmware/synaptics-boe-s3203b-16112102-25d862-potter.tdat
 etc/firmware/synaptics-s3508-16082601-255c40-addison.tdat
@@ -273,8 +273,8 @@ vendor/etc/permissions/qcrilhook.xml
 vendor/etc/permissions/qti-vzw-ims-internal.xml
 vendor/etc/permissions/qti_libpermissions.xml
 vendor/etc/permissions/qti_permissions.xml
-#vendor/etc/vintf/manifest/android.hardware.gnss@2.0-service-qti.xml
-#vendor/etc/vintf/manifest/vendor.qti.gnss@3.0-service.xml
+-vendor/etc/vintf/manifest/android.hardware.gnss@2.0-service-qti.xml
+-vendor/etc/vintf/manifest/vendor.qti.gnss@3.0-service.xml
 vendor/etc/xtra_root_cert.pem
 vendor/firmware/a506_zap.b00
 vendor/firmware/a506_zap.b01
@@ -1399,3 +1399,9 @@ lib/libdtvtuner.so
 lib64/libdtvhal.so
 lib64/libdtvtuner.so
 lib/modules/isdbt.ko
+
+# Protobuf
+vendor/lib/libprotobuf-cpp-lite-3.9.1.so
+vendor/lib64/libprotobuf-cpp-lite-3.9.1.so
+vendor/lib64/libprotobuf-cpp-full-3.9.1.so
+
