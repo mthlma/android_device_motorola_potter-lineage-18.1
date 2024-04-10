@@ -18,6 +18,16 @@ LOCAL_PATH := $(call my-dir)
 ifeq ($(TARGET_DEVICE),potter)
   subdir_makefiles=$(call first-makefiles-under,$(LOCAL_PATH))
   $(foreach mk,$(subdir_makefiles),$(info including $(mk) ...)$(eval include $(mk)))
+include $(CLEAR_VARS)
+
+FIRMWARE_MOUNT_POINT := $(TARGET_OUT_VENDOR)/firmware_mnt
+
+$(FIRMWARE_MOUNT_POINT):
+	@echo "Creating $(FIRMWARE_MOUNT_POINT)"
+	@mkdir -p $(TARGET_OUT_VENDOR)/firmware_mnt
+	@ln -sf /vendor/firmware_mnt $(TARGET_OUT_VENDOR)/f
+
+ALL_DEFAULT_INSTALLED_MODULES += $(FIRMWARE_MOUNT_POINT)
 
 FIRMWARE_FPCTZ_IMAGES := \
     fpctzappfingerprint.b00 fpctzappfingerprint.b01 fpctzappfingerprint.b02 \
