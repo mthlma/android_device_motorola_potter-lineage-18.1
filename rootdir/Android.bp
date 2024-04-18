@@ -1,0 +1,7 @@
+// Device init scripts
+
+sh_binary {
+    name: "init.qcom.sensors.sh",
+    src: "bin/init.qcom.sensors.sh",
+    soc_specific: true,
+}

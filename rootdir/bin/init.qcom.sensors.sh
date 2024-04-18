@@ -1,4 +1,5 @@
-# Copyright (c) 2009-2012, 2014-2016, The Linux Foundation. All rights reserved.
+#!/vendor/bin/sh
+# Copyright (c) 2015, The Linux Foundation. All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -25,43 +26,18 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
-on property:ro.boot.ram=2GB
-    write /sys/block/zram0/disksize 1073741824
+#
+# Function to start sensors for SSC enabled platforms
+#
+start_sensors()
+{
+    if [ -c /dev/msm_dsps -o -c /dev/sensors ]; then
+        chmod -h 775 /persist/sensors
+        chmod -h 664 /persist/sensors/sensors_settings
+        mkdir -p /persist/sensors/registry/registry
+        chown -h system.root /persist/sensors/sensors_settings
+        start sensors
+    fi
+}
 
-on property:ro.boot.ram=3GB
-    write /sys/block/zram0/disksize 805306368
-
-on property:ro.boot.ram=4GB
-    write /sys/block/zram0/disksize 536870912
-    
-on early-boot
-    # STML0 driver parameter permissions
-    chown root oem_5004 /sys/module/stml0xx/parameters/irq_disable
-    chmod 0660 /sys/module/stml0xx/parameters/irq_disable
-
-    #STML0 device permissions
-    chown system compass /dev/stml0xx
-    chmod 0660 /dev/stml0xx
-    chown system compass /dev/stml0xx_as
-    chmod 0660 /dev/stml0xx_as
-    chown system compass /dev/stml0xx_ms
-    chmod 0660 /dev/stml0xx_ms
-    
-on post-fs-data
-    # Sensor Hub calibration data directory
-    mkdir /data/vendor/sensorhub 0770 system compass
-
-    # Setup folder for native to transfer data to NativeDropBoxAgent
-    mkdir /data/vendor/sensorhub_logs 0730 system diag
-    
-# Start Sensor daemon
-service vendor-sensor-sh /vendor/bin/init.qcom.sensors.sh
-    class core
-    user root
-    oneshot
-    
-service vendor.motosh /vendor/bin/motosh boot
-    class late_start
-    user compass
-    group compass misc input
-    oneshot
+start_sensors
